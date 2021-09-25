@@ -122,7 +122,7 @@ class MainApp(App):#MDApp
                     handler.write(img_data)
 
                 popup = Popup(title='Copy/Image Download', content=Label(text='Done.'),
-                auto_dismiss=True,size_hint=(0.3, 0.3))
+                auto_dismiss=True,size_hint=(0.4, 0.2))
                 popup.open()
                 
 
