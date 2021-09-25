@@ -6,6 +6,7 @@ from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.image import AsyncImage
 from kivy.utils import platform
+from kivy.metrics import dp, sp
 #import kivymd
 
 import random
@@ -131,7 +132,7 @@ class MainApp(App):#MDApp
             
             
             b = Button(text=self.better_text(tmp[i]['title']),background_color=(self.random_col()),
-             size_hint=(1,s_y), pos_hint={'y':s_y*i*2+s_y},background_normal= '')
+             size_hint=(1,s_y), pos_hint={'y':s_y*i*2+s_y},background_normal= '', font_size=sp(15))
             b.bind(on_press=self.button_callback)
             im = AsyncImage(source=tmp[i]['img'],allow_stretch= True,size_hint_y=s_y, pos_hint={'y':s_y*(i-0.5)*2+s_y})
             
