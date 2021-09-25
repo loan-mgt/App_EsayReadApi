@@ -7,12 +7,16 @@ from kivy.core.window import Window
 from kivy.uix.image import AsyncImage
 from kivy.utils import platform
 from kivy.metrics import dp, sp
+from kivy.core.clipboard import Clipboard
 #import kivymd
 
 import random
-from kivy.core.clipboard import Clipboard
 
 import requests
+
+if kivy.utils.platform == 'android' :
+
+    from android.permissions import request_permissions, Permission
 
 
 
@@ -66,6 +70,8 @@ class MainApp(App):#MDApp
         self.font_ratio = 0.003
         if kivy.utils.platform == 'android' :
             self.font_ratio = 0.00110229276
+            request_permissions([Permission.WRITE_EXTERNAL_STORAGE,
+                     Permission.READ_EXTERNAL_STORAGE])
 
         self.screen = Builder.load_string(KV)
 
