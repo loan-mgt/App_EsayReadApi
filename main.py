@@ -8,6 +8,8 @@ from kivy.uix.image import AsyncImage
 from kivy.utils import platform
 from kivy.metrics import dp, sp
 from kivy.core.clipboard import Clipboard
+from  kivy.uix.popup import Popup
+from  kivy.uix.label import Label
 #import kivymd
 
 import random
@@ -118,6 +120,10 @@ class MainApp(App):#MDApp
                 img_data = requests.get(self.btn_list_info[i]).content
                 with open(path+'Twitter_image.jpg', 'wb') as handler:
                     handler.write(img_data)
+
+                popup = Popup(title='Copy/Image Download', content=Label(text='Done.'),
+                auto_dismiss=True,size_hint=(0.3, 0.3))
+                popup.open()
                 
 
            
