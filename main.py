@@ -10,12 +10,15 @@ from kivy.metrics import dp, sp
 #import kivymd
 
 import random
-import clipboard 
+from kivy.core.clipboard import Clipboard
+
 import requests
 
 
 
 KV = """
+
+
 Screen:
     FloatLayout:
         size_hint: (1,1)
@@ -30,7 +33,7 @@ Screen:
             size_hint: 0.1,0.1
             pos_hint: {'x':0.9}
             text: "Refresh"
-            on_press:app.build_feed()
+            on_press: app.build_feed()
         
 
 
@@ -58,7 +61,12 @@ tmp = [{'title': 'Blue Origin, Rocket Lab, SpaceX, ULA win Space Force contracts
 class MainApp(App):#MDApp
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+
         self.max_length = 42
+        self.font_ratio = 0.003
+        if kivy.utils.platform == 'android' :
+            self.font_ratio = 0.00110229276
+
         self.screen = Builder.load_string(KV)
 
 
@@ -91,7 +99,7 @@ class MainApp(App):#MDApp
             if df == self.btn_list[i]:
         
                 
-                clipboard.copy(df.text)
+                Clipboard.copy(df.text)
 
 
                 print(kivy.utils.platform)
@@ -115,7 +123,7 @@ class MainApp(App):#MDApp
 
        
         print(Window.size)
-        self.max_length = 42*Window.size[0]*0.003
+        self.max_length = 42*Window.size[0]*self.font_ratio
         print(self.max_length)
         self.B_S = 0.2
         self.S_S = 0.2*len(tmp)*2#with image
